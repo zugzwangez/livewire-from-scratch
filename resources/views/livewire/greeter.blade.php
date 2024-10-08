@@ -5,10 +5,12 @@
         <div class="mt-2">
 
             <select type="text" class="p-4 border rounded-lg bg-gray-300 text-black" wire:model.fill="greeting">
-                <option value="Mire Usted">Mire usted</option>
-                <option value="Sisisisi">Sisisisisi</option>
-                <option value="Es el alcalde" selected>Es el alcalde</option>
-                <option value="Un plato es un plato">Un plato es un plato</option>
+                
+                @foreach($greetings as $item)
+                
+                <option value={{$item->greeting}}>{{$item->greeting}}</option>
+
+                @endforeach
             </select>
 
             <input id="newName" type="text" class="block w-full p-4 my-4 border rounded-lg"

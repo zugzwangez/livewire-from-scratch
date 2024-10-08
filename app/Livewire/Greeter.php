@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Greeting;
 use Livewire\Component;
 
 use Livewire\Attributes\Validate;
@@ -14,7 +15,30 @@ class Greeter extends Component
     #[Validate('required|min:2')]
     public $name = '';
     public $greeting = '';
+    public $greetings = [];
     public $greetingMessage = '';
+
+
+    public function mount()
+    {
+        // Load greetings from the DB Table
+        $this->greetings = Greeting::all();
+    }
+
+    // Execute anytime there is an update in the component, e.g: type a name in an input
+    public function updated($property, $value)
+    {
+        if ($property == 'name')
+        {
+            $this->name = strtolower($value);
+        }
+    }
+
+    // To check a particular property, use updatedPropertyName
+    public function updatedGreeting($value)
+    {
+        $this->greeting = strtoupper($value);
+    }
 
     public function changeGreeting()
     {
