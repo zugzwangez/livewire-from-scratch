@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         Greeting::create(['greeting' => 'Hi']);
         Greeting::create(['greeting' => 'Hey']);
         Greeting::create(['greeting' => 'Howdy']);
+        
     }
 }
