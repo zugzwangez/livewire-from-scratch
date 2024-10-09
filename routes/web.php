@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 
 // Full Page Component
-Route::get('/search', Search::class);
+//Route::get('/search', Search::class);
 Route::get('/greeting', Greeter::class);
 // Article
 Route::get('/articles/{article}', ShowArticle::class);
