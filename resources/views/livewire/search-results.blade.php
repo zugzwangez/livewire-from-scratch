@@ -10,7 +10,7 @@
 
         <h1 class="text-yellow-400 pt-2"> {{ count($results) != 0 ? 'Found (' . count($results) . ') results.' : 'No results Found.'}}</h1>
         @foreach($results as $key=>$result)
-            <div class="pt-2">
+            <div class="pt-2" wire:key="{{$result->id}}">
                 <a wire:navigate href="/articles/{{$result->id}}" class="hover:text-orange-400">{{$key+1 . ' - ' . $result->title}}</a>
             </div>
         @endforeach
