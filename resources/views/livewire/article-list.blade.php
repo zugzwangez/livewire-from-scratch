@@ -1,6 +1,6 @@
 <div class="m-auto lg:w-1/2 mb-4">
     
-    <div class="mb-3">
+    <div class="mb-3 flex justify-between items-center">
         <a 
             href="/dashboard/articles/create"
             class="text-white bg-orange-600 hover:bg-orange-400 rounded-lg p-2"
@@ -8,10 +8,24 @@
         >
         Create Article
         </a>
+        {{-- <livewire:published-count lazy /> --}}
+        <div class="flex justify-start items-center gap-2">
+            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
+                wire:click="showAll()"
+            >
+                Show All
+            </button>
+            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
+                wire:click="showPublished()"
+            >
+                Show Published (<livewire:published-count lazy placeholder-text="loading..." />)
+            </button>
+        </div>
     </div>
-    
-    
-    <table>
+    <div class="my-2">
+        {{$articles->links()}}
+    </div>    
+    <table class="w-full">
         <thead class="text-xs uppercase bg-zinc-300">
             <tr>
                 <th class="p-2">Title</th>
@@ -40,4 +54,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="mt-2">
+        {{$articles->links(data: ['scrollTo' => false])}}
+    </div>
 </div>
