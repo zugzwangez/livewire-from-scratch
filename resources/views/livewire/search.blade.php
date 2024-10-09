@@ -28,7 +28,7 @@
         <h1 class="text-yellow-400"> {{ count($results) != 0 ? 'Found (' . count($results) . ') results.' : 'No results Found.'}}</h1>
         @foreach($results as $key=>$result)
             <div class="pt-2">
-                {{$key+1 . ' - ' . $result->title}}
+                <a href="/articles/{{$result->id}}" class="hover:text-orange-400">{{$key+1 . ' - ' . $result->title}}</a>
             </div>
         @endforeach
     </div>       
