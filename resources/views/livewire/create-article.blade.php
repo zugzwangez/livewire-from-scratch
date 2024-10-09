@@ -9,18 +9,18 @@
                 wire:model="form.title"
             >
             <div>
-                @error('title') <span class="text-red-600"">{{ $message }}</span> @enderror
+                @error('form.title') <span class="text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
         <div class="mb-3">
             <label class="block" for="article-content">Content</label>
             <textarea
-                id="article-content""
+                id="article-content"
                 class="p-2 w-full border rounded-md bg-gray-700 text-white"
                 wire:model="form.content"
             ></textarea>
             <div>
-                @error('content') <span class="text-red-600">{{ $message }}</span> @enderror
+                @error('form.content') <span class="text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
         <div class="mb-3">
@@ -72,9 +72,12 @@
             </div>
         </div>
         <div class="mb-3">
-            <button
-                class="text-gray-200 p-2 bg-indigo-700 hover:bg-indigo-900 rounded-sm"
+            <button 
+                class="text-gray-200 p-2 bg-blue-700 rounded-sm disabled:opacity-75 disabled:bg-blue-300"
                 type="submit"
+                wire:dirty.class="hover:bg-blue-900"
+                wire:dirty.attr.remove="disabled"
+                disabled
             >
                 Save
             </button>
