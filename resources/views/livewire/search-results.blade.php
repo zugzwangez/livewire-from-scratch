@@ -1,4 +1,4 @@
-<div>
+<div class="{{ $show ? 'block' : 'hidden'}}">
     <div class="mt-2 absolute border rounded-lg p-4 bg-black text-white border-orange-400">
         
         {{-- We do not need it, because we can clear the results clicking on the body, the app.blade trigger the event --}}

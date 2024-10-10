@@ -11,6 +11,11 @@ class SearchResults extends Component
     #[Reactive]
     public $results = [];
 
+    #[Reactive]    
+    public $show = [];
+
+
+
     // will fire an event that will be listened in the parent Search Component
     // But better fire the event directly in the button
    /*  public function clear()

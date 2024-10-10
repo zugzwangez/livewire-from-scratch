@@ -24,9 +24,9 @@
 
     </form>
 
-    @if (!empty($results))
-        <livewire:search-results :results="$results">      
-    @endif
+    {{-- @if (!empty($results)) --}}
+        <livewire:search-results :results="$results" :show="!empty($searchText)">      
+    {{-- @endif --}}
 
 
 </div>

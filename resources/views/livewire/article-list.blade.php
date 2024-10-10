@@ -10,18 +10,29 @@
         </a>
         {{-- <livewire:published-count lazy /> --}}
         <div class="flex justify-start items-center gap-2">
-            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
-                wire:click="showAll()"
+            <button @class([
+                'text-gray-200 p-2 hover:bg-blue-900 rounded-sm',
+                'bg-gray-700' => $showOnlyPublished,
+                'bg-blue-700' => !$showOnlyPublished,
+            ])            
+                wire:click="showAllArticles(true)"
             >
                 Show All
             </button>
-            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
-                wire:click="showPublished()"
+            <button @class([
+                'text-gray-200 p-2 hover:bg-blue-900 rounded-sm',
+                'bg-gray-700' => !$showOnlyPublished,
+                'bg-blue-700' => $showOnlyPublished,
+            ])            
+                wire:click="showAllArticles(false)"
             >
                 Show Published (<livewire:published-count lazy placeholder-text="loading..." />)
             </button>
         </div>
     </div>
+    @if (session('status'))
+        <div class="text-white bg-green-600 rounded-lg p-2">{{session('status')}}</div>
+    @endif
     <div class="my-2">
         {{$articles->links()}}
     </div>    

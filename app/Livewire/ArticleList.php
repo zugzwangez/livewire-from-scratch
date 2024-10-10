@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use Livewire\Attributes\Session;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,7 @@ class ArticleList extends AdminComponent
 {
     use WithPagination;
 
+    #[Session(key: 'published')]
     public $showOnlyPublished = false;
     
     public function delete(Article $article)
@@ -20,7 +22,8 @@ class ArticleList extends AdminComponent
         $article->delete();
     }
     
-    public function showAll()
+    // Refactor in one method
+    /* public function showAll()
     {
         $this->showOnlyPublished = false;
         // reset the url parameter page
@@ -31,6 +34,12 @@ class ArticleList extends AdminComponent
     {
         $this->showOnlyPublished = true;
         // reset the url parameter page
+        $this->resetPage();
+    } */
+
+    public function showAllArticles(bool $all)
+    {
+        $all == true ? $this->showOnlyPublished = false : $this->showOnlyPublished = true;
         $this->resetPage();
     }
 

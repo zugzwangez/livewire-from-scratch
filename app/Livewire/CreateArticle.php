@@ -32,7 +32,9 @@ class CreateArticle extends AdminComponent
     {
         $this->form->store();
 
-        $this->redirect('/dashboard/articles', navigate: true);
+        //$this->redirect('/dashboard/articles', navigate: true);
+        // use name redirection
+        $this->redirectRoute('dashboard.articles.index', navigate: true);
 
     }
     

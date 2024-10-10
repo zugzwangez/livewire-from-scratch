@@ -50,7 +50,12 @@ class EditArticle extends AdminComponent
     {
         $this->form->update();
 
-        $this->redirect('/dashboard/articles', navigate: true);
+        // using a session to show a flash message
+        session()->flash('status', 'Article ' . $this->form->title . ' successfully updated.');
+
+        //$this->redirect('/dashboard/articles', navigate: true);
+        // redirecting to a full page component using the class name
+        $this->redirect(ArticleList::class, navigate: true);
     }
     
     public function render()
