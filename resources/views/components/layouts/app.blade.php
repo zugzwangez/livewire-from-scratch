@@ -30,12 +30,16 @@
                                     <li>
                                         <a href="/" class="block py-2 px-3 text-blue-500">Home</a>
                                     </li>
+                                    @auth
                                     <li>
                                         <a href="/dashboard" class="block py-2 px-3 text-blue-500">Dashboard</a>
                                     </li>
+                                    @endauth
                                 </ul>
                             </div>
-                            <livewire:search placeholder="type something to search">
+                            <div class="w-1/2">
+                                <livewire:search placeholder="type something to search">
+                            </div>
                         </div>
                     </nav>
 
@@ -46,10 +50,10 @@
             </div>
         </div>
         <!-- listen the search clear event --> 
-        <script>
+        {{-- <script>
             document.addEventListener('search:clear-results', function(e){
                 console.log('cleared results')
             })
-        </script>
+        </script> --}}
     </body>
 </html>

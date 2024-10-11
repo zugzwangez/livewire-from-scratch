@@ -7,9 +7,13 @@ use Livewire\Component;
 
 use Livewire\Attributes\Validate;
 use App\Models\Article;
+use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 class EditArticle extends AdminComponent
 {
+   use WithFileUploads;
+   
     // article can be nullable
    /*  public ?Article $article;
     
@@ -44,6 +48,14 @@ class EditArticle extends AdminComponent
     public function mount(Article $article)
     {
         $this->form->setArticle($article);
+    }
+
+    public function downloadPhoto()
+    {
+        return response()->download(
+            Storage::disk('public')->path($this->form->photo_path),
+            'article_photo.png'
+        );
     }
 
     public function save()

@@ -24,6 +24,28 @@
             </div>
         </div>
         <div class="mb-3">
+            <label class="block" for="article-content">
+                Photo
+            </label>
+            <div class="flex items-center">
+                <input type="file"
+                       wire:model="form.photos"
+                       multiple
+                >
+                <div>
+                    @foreach ($form->photos as $photo)
+                        @if($photo)
+                            <img class="w-1/2" src="{{ $photo->temporaryUrl() }}">                    
+                        @endif    
+                    @endforeach
+                    
+                </div>
+            </div>
+            <div>
+                @error('photo') <span class="text-red-600">{{ $message }}</span> @enderror
+            </div>
+        </div>
+        <div class="mb-3">
             <label class="flex items-center">
                 <input type="checkbox" name="published"
                     class="mr-2"

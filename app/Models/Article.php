@@ -15,7 +15,8 @@ class Article extends Model
         'title', 
         'content', 
         'published',
-        'notifications'
+        'notifications',
+        'photo_path'
     ];
 
     // Casting notifications as array, Laravel is going to store the array as json structure in the database, then we do not need to encode and decode manually.

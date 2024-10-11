@@ -7,9 +7,12 @@ use App\Models\Article;
 use Livewire\Component;
 
 use Livewire\Attributes\Validate;
+use Livewire\WithFileUploads;
 
 class CreateArticle extends AdminComponent
 {
+    use WithFileUploads;
+    
     /* #[Validate('required')]
     public $title = '';
 

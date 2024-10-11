@@ -22,6 +22,10 @@ class ArticleForm extends Form
     public $published = false;
     public $notifications = [];
     public $allowNotifications = false;
+    // upload photos
+    public $photo_path = '';
+    #[Validate(['photos.*' => 'image|max:1024'])]
+    public $photos = [];
 
     public function setArticle(Article $article)
     {
@@ -31,6 +35,7 @@ class ArticleForm extends Form
         $this->published = $article->published;
         // if its null we assign an empty array
         $this->notifications = $article->notifications ?? [];
+        $this->photo_path = $article->photo_path;
         // if we have notification in the array must be true otherwise false
         $this->allowNotifications = count($this->notifications) > 0;
 
@@ -45,7 +50,15 @@ class ArticleForm extends Form
             $this->notifications = [];
         }
 
-        Article::create($this->only(['title','content','published','notifications']));
+        foreach ($this->photos as $photo)
+        {
+            if ($photo)
+            {
+                $this->photo_path = $photo->storePublicly('article_photos', ['disk' => 'public']);
+            }
+        }
+
+        Article::create($this->only(['title','content','published','notifications', 'photo_path']));
 
     }
 
@@ -57,8 +70,21 @@ class ArticleForm extends Form
             $this->notifications = [];
         }
 
+        foreach ($this->photos as $photo)
+        {
+            if ($photo)
+            {
+                $this->photo_path = $photo->storePublicly('article_photos', ['disk' => 'public']);
+            }
+        }
+
+       /*  if ($this->photo)
+        {
+            $this->photo_path = $this->photo->storePublicly('article_photos', ['disk' => 'public']);
+        }      */  
+
         $this->article->update(
-            $this->only(['title','content','published','notifications'])
+            $this->only(['title','content','published','notifications', 'photo_path'])
         );
 
     }

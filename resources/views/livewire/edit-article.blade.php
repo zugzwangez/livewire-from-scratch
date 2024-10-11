@@ -31,6 +31,33 @@
                 @error('form.content') <span class="text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
+
+        <div class="mb-3">
+            <label class="block" for="article-content">
+                Photo
+            </label>
+            <div class="flex items-center">
+                <input type="file"
+                       wire:model="form.photos"
+                       multiple
+                >
+                <div>
+                        @if($form->photo_path)
+                            <img class="w-1/2" src="{{ Storage::url($form->photo_path) }}">
+                            <button
+                                type="button"
+                                wire:click="downloadPhoto"
+                            >
+                            Download
+                            </button>
+                        @endif                       
+                    
+                </div>
+            </div>
+            <div>
+                @error('photo') <span class="text-red-600">{{ $message }}</span> @enderror
+            </div>
+        </div>
         <div class="mb-3">
             <label wire:dirty.class="text-orange-400" wire:target="form.published" class="flex items-center">
                 <input type="checkbox" name="published" 
@@ -58,7 +85,7 @@
                     </label>
                 </div>
                 <!-- Use Alpine to show/hide an element -->
-                <div x-show="$wire.form.allowNotifications">
+                <div x-show="$wire.form.allowNotifications" wire:transition>
                     <label class="flex items-center">
                         <input type="checkbox" value="email" class="mr-2"
                             wire:model="form.notifications"
@@ -84,9 +111,10 @@
             <button 
                 class="text-gray-200 p-2 bg-blue-700 rounded-sm disabled:opacity-75 disabled:bg-blue-300"
                 type="submit"
-                wire:dirty.class="hover:bg-blue-900"
+                {{-- IT IS NOT POSSIBLE USE DIRTY STATES UPLOADING FILES --}}
+                {{-- wire:dirty.class="hover:bg-blue-900"
                 wire:dirty.attr.remove="disabled"
-                disabled
+                disabled --}}
             >
                 Save
             </button>
